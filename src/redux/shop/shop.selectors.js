@@ -9,13 +9,14 @@ export const selectCollections = createSelector(
 
 export const selectCollectionsForPreview = createSelector(
   [selectCollections],
-  collections => Object.keys(collections).map(key => collections[key])
+  (collections) =>
+    collections ? Object.keys(collections).map((key) => collections[key]) : []
 );
 
-export const selectCollection = collectionUrlParam => createSelector(
-  [selectCollections],
-  collections => collections[collectionUrlParam]
-);
+export const selectCollection = (collectionUrlParam) =>
+  createSelector([selectCollections], (collections) =>
+    collections ? collections[collectionUrlParam] : null
+  );
 
 /*
     I have converted the shop data into an object thus the above code which is also followed by Yihua,
